@@ -21,7 +21,7 @@ function operation(){
         if(action === "Criar Conta"){
             createAccount();
         }else if(action === "Consultar Saldo"){
-
+            getAccountBalance();
         }else if(action === "Depositar"){
             deposit();
         }else if(action === "Sacar"){
@@ -142,3 +142,31 @@ function getAccount(accountName){
 
     return JSON.parse(accountJSON);
 }
+
+// return account balance
+function getAccountBalance() {
+    inquirer
+      .prompt([
+        {
+          name: 'accountName',
+          message: 'Qual o nome da sua conta?',
+        },
+      ])
+      .then((answer) => {
+        const accountName = answer['accountName']
+  
+        if (!checkAccount(accountName)) {
+          return getAccountBalance()
+        }
+  
+        const accountData = getAccount(accountName)
+  
+        console.log(
+          chalk.bgBlue.black(
+            `Olá, o saldo da sua conta é de R$${accountData.balance}`,
+          ),
+        )
+        operation()
+      })
+  }
+  
