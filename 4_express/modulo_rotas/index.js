@@ -16,6 +16,8 @@ app.use(express.json());
 
 app.use("/users", users);
 
+app.use(express.static("public"));
+
 app.get("/", (req, res)=>{
     res.sendFile(`${basePath}/index.html`);
 });

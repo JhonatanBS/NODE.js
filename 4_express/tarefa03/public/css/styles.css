@@ -1,0 +1,19 @@
+body{
+    text-align: center;
+    background-color: aquamarine;
+}
+
+.flex-box{
+   display: flex;
+   justify-content: space-evenly;
+   height: 70vh;
+   width: 100%;
+   background-color: aliceblue;
+   align-items: center;
+}
+
+.flex-box div{
+    height: 100px;
+    width: 100px;
+    background-color: blueviolet;
+}
