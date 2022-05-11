@@ -4,4 +4,7 @@
   <p>
      Bem vindo {{user.name}} {{user.surname}}, você foi autenticado com sucesso, clique no link para seguir <a href="/dashboard">Dashboard</a>
   </p>
+
+  {{else}}
+  <p>Que pena! Você não foi autenticado!</p>
 {{/if}}

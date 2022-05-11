@@ -18,7 +18,7 @@ app.get("/", (req,res)=>{
      age: 29
    } 
    
-   const auth = true;
+   const auth = false;
 
    res.render("home", {user:user , auth});
 });
