@@ -1,0 +1,32 @@
+<h1>Meu livros cadastrados</h1>
+<div class="center">
+    <a href="/"><button>Adicionar novo livro</button></a>
+</div>
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>Titulo</td>
+            <td>Páginas</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each books}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.pages}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- <div class="container">
+    {{#each books}}
+    <div class="book">
+        <p>#{{this.id}} - <span>{{this.title}} - {{this.pages}}</span></p>
+    </div>
+    {{/each}}
+</div> --}}
