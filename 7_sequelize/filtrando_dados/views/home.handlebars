@@ -1,0 +1,14 @@
+<h1>Usuários Cadastrados</h1>
+
+<div class="container-name">
+    {{#each users}}
+      <div class="item">
+        <h2>{{this.name}}</h2>
+        <p>{{this.occupation}}</p>
+
+        <div class="action">
+           <a href="/users/{{this.id}}">Detalhes</a>
+        </div>
+      </div>
+    {{/each}}
+</div>

@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif, Verdana;
+}
+
+h1{
+    text-align: center;
+}
+
+.form{
+    margin: 0 auto;
+    width: 500px;
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5em;
+}
+
+.form-control label{
+    font-weight: bold;
+    margin-bottom: .3em;
+}
+
+.form-control input{
+    padding: 5px;
+}
+
+.check-box{
+    flex-direction: row;
+}
+
+.check-box input{
+    margin-right: 10px;
+}
+
+/* BOOKS*/
+
+table{
+    margin: 50px auto;
+    width: 500px;
+    text-align: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+a{
+    width: 150px;
+    font-size: 20px;
+}
+
+button{
+ width: 150px;
+ height: 50px;
+ border: none;
+ background-color: #242424;
+ color: #FFFFFF;
+ border-radius: 15px;
+}
+
+table thead td{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+table tbody td{
+    font-size: 20px;
+}
+
+/* HEADER*/
+
+header{
+    width: 100%;
+    height: 10vh;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+nav ul{
+    display: flex;
+    list-style-type: none;
+    text-transform: uppercase;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+ul{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+}
+
+ul a{
+    font-size: 20px;
+    color: #242424;
+    text-decoration: none;
+    width: 200px;
+}
+
+.container{
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container h1,p,a{
+    margin: 20px auto;
+}
+
+.container-name{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.container-name .item{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1 1 29%;
+    max-width: 29%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item h2, .item p{
+    margin-bottom: 0.8em;
+}
+
+.action{
+    display: flex;
+    text-align: center;
+}
