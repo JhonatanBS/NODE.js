@@ -104,3 +104,4 @@ conn.sync().then(()=>{
         console.log("Servidor funcionando na porta 3000");
      });
 });
+//conn.sync({force: true});
