@@ -53,6 +53,9 @@ app.use(
     }),
 );
 
+// Flash messages
+app.use(flash());
+
 // Routes
 app.use("/toughts", toughtsRoutes);
 app.use("/", authRoutes);
