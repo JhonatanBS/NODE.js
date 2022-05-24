@@ -4,6 +4,10 @@ const router = express.Router();
 // Controllers
 const ToughtController = require("../controllers/ToughtController");
 
+// Helpers
+const checkAuth = require("../helpers/auth").checkAuth;
+
+router.get("/dashboard",checkAuth, ToughtController.dashboard);
 router.get("/", ToughtController.showToughts);
 
 module.exports = router;

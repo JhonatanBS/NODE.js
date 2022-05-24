@@ -64,11 +64,10 @@ app.get("/", ToughtController.showToughts);
 
 // set session to res
 app.use((req,res,next)=>{
-  
+   
     if(req.session.userid){
-        res.locals.session = req.session;
+        res.locals.session = req.session; 
     }
-
     next();
 })
 

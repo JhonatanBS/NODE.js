@@ -1,10 +1,45 @@
 const User = require("../models/User");
 
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 module.exports = class AuthController{
 
     static login(req,res){
         res.render("auth/login");
+    }
+
+    static async loginPost(req,res){
+        const {email, password} = req.body;
+
+        //find user
+        const user = await User.findOne({where:{email:email}});
+
+        if(!user){
+            req.flash("message","Usuário não encontrado!");
+            res.render("auth/login");
+
+            return;
+        }
+
+        // Check if password match
+        const passwordMatch = bcrypt.compareSync(password, user.password);
+
+        if(!passwordMatch){
+            req.flash("message","Senha inválida!");
+            res.render("auth/login");
+
+            return;
+        }
+
+        // Initialize session
+        req.session.userid = user.id;
+        console.log(req.session.userid);
+
+        req.flash("message", "Autenticação realizada com sucesso!");
+
+        req.session.save(()=>{
+            res.redirect("/",);
+        });
     }
 
     static register(req,res){
@@ -47,13 +82,12 @@ module.exports = class AuthController{
 
             // Initialize session
             req.session.userid = createdUser.id;
-            console.log(req.session.userid);
 
             req.flash("message", "Cadastro realizado com sucesso!");
 
             req.session.save(()=>{
                 res.redirect("/");
-            })
+            });
 
         }catch(err){console.log(err)}
     }
@@ -62,4 +96,5 @@ module.exports = class AuthController{
         req.session.destroy();
         res.redirect("/login");
     }
+
 }
