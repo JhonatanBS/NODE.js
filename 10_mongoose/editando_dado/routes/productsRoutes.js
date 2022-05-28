@@ -7,7 +7,7 @@ router.get("/create", ProductController.createProduct);
 router.post("/create", ProductController.showProductsPost);
 router.get("/:id",ProductController.getProduct);
 // router.post("/remove/:id", ProductController.removeProduct);
-// router.post("/edit", ProductController.editProductPost);
+router.post("/edit", ProductController.editProductPost);
 router.get("/edit/:id", ProductController.editProduct);
 router.get("/", ProductController.showProducts);
 
