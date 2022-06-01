@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 
-
+const UserRoutes = require("./routes/UserRoutes");
 
 // Config JSON response
 app.use(express.json());
@@ -15,5 +15,6 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use(express.static("public"));
 
 // Routes
+app.use("/users", UserRoutes);
 
 app.listen(5000);
