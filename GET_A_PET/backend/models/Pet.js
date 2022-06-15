@@ -32,4 +32,4 @@ const Pet = mongoose.model(
     }, { timestamps: true })
 );
 
-module.exports = User;
+module.exports = Pet;

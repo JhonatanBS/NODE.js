@@ -3,8 +3,6 @@ const cors = require("cors");
 
 const app = express();
 
-const UserRoutes = require("./routes/UserRoutes");
-
 // Config JSON response
 app.use(express.json());
 
@@ -15,6 +13,10 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use(express.static("public"));
 
 // Routes
+const UserRoutes = require("./routes/UserRoutes");
+const PetRoutes = require("./routes/PetRouter");
+
 app.use("/users", UserRoutes);
+app.use("/pets", PetRoutes);
 
 app.listen(5000);
