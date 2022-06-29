@@ -122,4 +122,17 @@ module.exports = class AccountController{
             customer.statement
         )
     }
+
+    static updateAccount(request, response){
+        const { name } = request.body;
+
+        const { customer } = request;
+
+        customer.name = name;
+
+        return response.status(200).json({
+            message: "Conta atualizada com sucesso!",
+            customer
+        });
+    }
 }
