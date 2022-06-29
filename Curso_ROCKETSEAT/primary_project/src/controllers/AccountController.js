@@ -106,4 +106,20 @@ module.exports = class AccountController{
             message: "Saque realizado com sucesso!"
         });
     }
+
+    static dataAccount(request,response){
+        const { customer } = request;
+
+        const { data } = request.query;
+
+        const dateFormat = new Date(data + " 00:00");
+
+        const statement = customer.statement.filter((statement) => {
+            return statement.created_At.toDateString() === new Date(dateFormat).toDateString()
+        });
+
+        return response.status(200).json(
+            customer.statement
+        )
+    }
 }
