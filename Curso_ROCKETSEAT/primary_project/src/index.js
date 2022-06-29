@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 //Router
-const Router = require("./routers/accountRouter");
+const Router = require("./routes/accountRouter");
 
 // middleware
 app.use(express.json());

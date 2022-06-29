@@ -4,6 +4,22 @@ const  customers = [];
 
 module.exports = class AccountController{
 
+    static verifyCpf(request, response, next){
+        const { cpf } = request.headers;
+    
+            const customer = customers.find(customer => customer.cpf === cpf);
+    
+            if(!customer){
+                return response.status(400).json({
+                    error: "O cpf não existe!"
+                });
+            }
+    
+            request.customer = customer;
+    
+            return next();
+    }
+
     static createAccount(request, response){
 
         
@@ -30,18 +46,27 @@ module.exports = class AccountController{
     }
 
     static getAccount(request,response){
-        const { cpf } = request.params;
-
-        console.log(request.params);
-
-        const customer = customers.find(customer => customer.cpf === cpf);
-
-        if(!customer){
-            return response.status(400).json({
-                error: "O cpf não existe!"
-            });
-        }
+        const { customer } = request;
 
         return response.status(200).json(customer.statement);
+    }
+
+    static depositAccount(request,response){
+        const { description, amount } = request.body;
+
+        const { customer } = request;
+
+        const statementOperation = {
+            description,
+            amount,
+            created_At: new Date(),
+            type: "Credit"
+        }
+
+        customer.statement.push(statementOperation);
+
+        response.status(201).json({
+            message: "Depósito realizado com sucesso!"
+        });
     }
 }
