@@ -3,14 +3,14 @@ const { v4 : uuidv4 } = require("uuid");
 const  customers = [];
 
 function getBalance(statement){
-    const balance = statement.reduce((acc, operation) => {
+    let balance = statement.reduce((acc, operation) => {
         if(operation.type === "Credit"){
             return acc + operation.amount;
         }else {
             return acc - operation.amount;
         }
     });
-
+     console.log(balance)
     return balance;
 }
 
@@ -97,7 +97,8 @@ module.exports = class AccountController{
         const statementOperation = {
             amount,
             created_At: new Date(),
-            type: "Debit"
+            type: "Debit",
+            balanceTotal: balance - amount
         }
 
         customer.statement.push(statementOperation);
@@ -134,5 +135,28 @@ module.exports = class AccountController{
             message: "Conta atualizada com sucesso!",
             customer
         });
+    }
+
+    static removeAccount(request, response){
+        const { customer } = request;
+
+        customers.splice(customer,2);
+
+        return response.status(200).json({
+            message: "Conta excluída com sucesso!"
+        });
+    }
+
+    static showDeposit(request, response){
+        const { customer } = request;
+
+        const balance = getBalance(customer.statement);
+
+        return response.status(200).json(balance);
+    }
+
+    static ShowAccount(request, response){
+        
+        return response.status(200).json(customers);
     }
 }
