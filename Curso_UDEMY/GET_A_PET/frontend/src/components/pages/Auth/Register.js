@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Input from "../../form/Input"
 
 import { Link } from "react-router-dom"
@@ -6,14 +8,23 @@ import styles from "../../form/Form.module.css"
 
 function Register(){
 
-    function handleChange(e){
+    const [user, setUser] = useState({});
 
+    function handleChange(e){
+      setUser({ ...user, [e.target.name] : e.target.value})
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+
+      //Enviar usuário para o banco
+      console.log(user);
     }
 
     return(
      <section className={styles.form_container}>
          <h1>Register</h1>
-         <form>
+         <form onSubmit={handleSubmit}>
             <Input
               text="Nome"
               type="text"
