@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const { verifyCpf } = require("../controllers/AccountController");
 const AccountController = require("../controllers/AccountController");
 
 router.post("/account", AccountController.createAccount);
@@ -10,6 +11,6 @@ router.get("/statement/date",AccountController.verifyCpf, AccountController.data
 router.put("/account",AccountController.verifyCpf, AccountController.updateAccount);
 router.delete("/remove",AccountController.verifyCpf, AccountController.removeAccount);
 router.get("/all", AccountController.ShowAccount);
-router.get("/balance", AccountController.verifyCpf, AccountController.showDeposit);
+router.get("/balance", AccountController.verifyCpf, AccountController.balance);
 
 module.exports = router;

@@ -1,25 +1,24 @@
 const { v4 : uuidv4 } = require("uuid");
-
-const  customers = [];
-
-function getBalance(statement){
-    let balance = statement.reduce((acc, operation) => {
-        if(operation.type === "Credit"){
-            return acc + operation.amount;
-        }else {
-            return acc - operation.amount;
-        }
-    });
-     console.log(balance)
-    return balance;
-}
-
 module.exports = class AccountController{
+    
+    static customers = [];
 
+    static getBalance(statement){
+        let balance = statement.reduce((acc, operation) => {
+            if(operation.type === "Credit"){
+                return acc + operation.amount;
+            }else {
+                return acc - operation.amount;
+            }
+        });
+
+        return balance;
+    }
+    
     static verifyCpf(request, response, next){
         const { cpf } = request.headers;
     
-            const customer = customers.find(customer => customer.cpf === cpf);
+            const customer = AccountController.customers.find(customer => customer.cpf === cpf);
     
             if(!customer){
                 return response.status(400).json({
@@ -33,10 +32,10 @@ module.exports = class AccountController{
     }
 
     static createAccount(request, response){
-
+       
         const { cpf, name } = request.body;
 
-        const cpfExists = customers.some(customer => customer.cpf === cpf);
+        const cpfExists = AccountController.customers.some(customer => customer.cpf === cpf);
 
         if(cpfExists){
             return response.status(400).json({
@@ -44,7 +43,7 @@ module.exports = class AccountController{
             });
         }
 
-        customers.push({
+        AccountController.customers.push({
             cpf,
             name,
             id: uuidv4(),
@@ -52,7 +51,7 @@ module.exports = class AccountController{
         });
 
         return response.status(201).json({
-            message: "Conta criada com sucesso!"
+            message: "Conta criada com sucesso!",
         });
     }
 
@@ -71,7 +70,7 @@ module.exports = class AccountController{
             description,
             amount,
             created_At: new Date(),
-            type: "Credit"
+            type: "Credit",
         }
 
         customer.statement.push(statementOperation);
@@ -86,9 +85,9 @@ module.exports = class AccountController{
 
         const { customer } = request;
     
-        const balance = getBalance(customer.statement);
-
-        if( balance < amount ) {
+        const balance = AccountController.getBalance(customer.statement);
+    
+        if( balance.amount < amount ) {
             return response.status(400).json({
                 message: "Insufficient funds!"
             });
@@ -98,7 +97,6 @@ module.exports = class AccountController{
             amount,
             created_At: new Date(),
             type: "Debit",
-            balanceTotal: balance - amount
         }
 
         customer.statement.push(statementOperation);
@@ -140,23 +138,24 @@ module.exports = class AccountController{
     static removeAccount(request, response){
         const { customer } = request;
 
-        customers.splice(customer,2);
+        AccountController.customers.splice(customer,2);
 
         return response.status(200).json({
             message: "Conta excluída com sucesso!"
         });
     }
 
-    static showDeposit(request, response){
-        const { customer } = request;
-
-        const balance = getBalance(customer.statement);
-
-        return response.status(200).json(balance);
-    }
-
     static ShowAccount(request, response){
         
-        return response.status(200).json(customers);
+        return response.status(200).json(AccountController.customers);
+    }
+
+    static balance(request, response) {
+        const { customer } = request;
+        
+    
+        const balance = AccountController.getBalance(customer.statement);
+        console.log(customer.statement, balance.amount)
+        return response.status(200).json(balance)
     }
 }
