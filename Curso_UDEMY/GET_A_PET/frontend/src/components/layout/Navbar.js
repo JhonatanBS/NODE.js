@@ -9,7 +9,7 @@ import styles from "./Navbar.module.css"
 import { Context } from "../../context/UserContext";
 
 const Navbar = () => {
-    const { authenticated } = useContext(Context);
+    const { authenticated , logout } = useContext(Context);
 
     return (
       <nav className={styles.navbar}>
@@ -23,7 +23,7 @@ const Navbar = () => {
           </li>
           {
             authenticated ? (
-              <p>Logado</p>
+              <li onClick={logout}>Sair</li>
             )
             :
             (
