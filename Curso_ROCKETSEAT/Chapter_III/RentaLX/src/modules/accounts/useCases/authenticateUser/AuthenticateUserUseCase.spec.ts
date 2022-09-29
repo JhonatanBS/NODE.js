@@ -9,7 +9,6 @@ let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
 
 describe("Authenticate User", () => {
-
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     authenticateUserUseCase = new AuthenticateUserUseCase(
@@ -62,4 +61,4 @@ describe("Authenticate User", () => {
       });
     }).rejects.toBeInstanceOf(AppError);
   });
-})
+});

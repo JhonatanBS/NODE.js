@@ -32,7 +32,6 @@ describe("Create Category", () => {
   });
 
   it("Should not be able to create a new category with name exists", async () => {
-
     expect(async () => {
       const category = {
         name: "Category Test",
@@ -49,6 +48,5 @@ describe("Create Category", () => {
         description: category.description,
       });
     }).rejects.toBeInstanceOf(AppError);
-
   });
 });
