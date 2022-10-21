@@ -13,6 +13,7 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     daily_rate,
     fine_amount,
     license_plate,
+    id,
   }: ICreateCarDTO): Promise<Car> {
     const car = new Car();
 
@@ -24,6 +25,7 @@ export class CarsRepositoryInMemory implements ICarsRepository {
       daily_rate,
       fine_amount,
       license_plate,
+      id,
     });
 
     this.cars.push(car);
