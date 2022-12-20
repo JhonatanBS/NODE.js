@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+tmp/*
+!tmp/.gitkeep
+dist
+ormconfig.json
 
 # testing
 /coverage
