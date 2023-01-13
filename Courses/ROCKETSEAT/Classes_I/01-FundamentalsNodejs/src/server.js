@@ -17,10 +17,10 @@ const server = http.createServer((request, response) => {
       email: "dani@rocketseat.com"
     });
 
-    return response.end("Create of users");
+    return response.writeHead(201).end();
   }
 
-  return response.end("Hello World");
+  return response.writeHead(404).end();
 });
 
 server.listen(3333);
