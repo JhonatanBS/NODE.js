@@ -8,9 +8,10 @@
     ></p>
 </div>
 
-<h2>
+<hr>
+<h3 align="center">
 CERTIFICATES
-</h2>
+</h3>
 
 <hr>
 
